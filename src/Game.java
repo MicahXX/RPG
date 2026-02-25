@@ -110,7 +110,7 @@ public class Game {
     }
 
     // todo: general enemy system for the whole game
-    public void enemyDuelSystem(String enemyName, double enemyHealth, double enemyAttackDamage) throws InterruptedException {
+    public void enemyDuelSystem(String enemyName, double enemyHealth, double enemyAttackDamage, int rewardedMoney) throws InterruptedException {
         int turns = 1;
 
         separators();
@@ -166,6 +166,7 @@ public class Game {
             return;
         }
 
+        money += rewardedMoney;
         System.out.println("You won!!!");
     }
 
@@ -219,7 +220,7 @@ public class Game {
                 roomOneMinigame();
                 break;
             case "d":
-                enemyDuelSystem("Rat", 5, 0.5);
+                enemyDuelSystem("Rat", 3, 0.5, 2);
                 break;
         }
     }

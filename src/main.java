@@ -5,4 +5,6 @@ void main() throws InterruptedException {
     game.beginnerDataInput();
     game.beginnerRoom();
 
+    System.out.println(game.getMoney());
+    System.out.println(game.getHealth());
 }
