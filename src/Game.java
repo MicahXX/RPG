@@ -1,4 +1,3 @@
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -111,7 +110,7 @@ public class Game {
     }
 
     // todo: general enemy system for the whole game
-    public boolean enemyDuelSystem(String enemyName, double enemyHealth, double enemyAttackDamage) throws InterruptedException {
+    public void enemyDuelSystem(String enemyName, double enemyHealth, double enemyAttackDamage) throws InterruptedException {
         int turns = 1;
 
         separators();
@@ -125,7 +124,7 @@ public class Game {
             String option = input.nextLine().toLowerCase();
             switch (option) {
                 case "attack":
-                    enemyHealth = enemyHealth - getAttackDamage();
+                    enemyHealth = Math.max(0, enemyHealth - getAttackDamage());
                     timeout();
                     separators();
                     System.out.println("You dealt " + getAttackDamage() + ".");
@@ -137,7 +136,7 @@ public class Game {
                         separators();
                         System.out.println("Enemy is attacking you.");
                         timeout();
-                        health = getHealth() - enemyAttackDamage;
+                        setHealth(Math.max(0, getHealth() - enemyAttackDamage));
                         timeout();
                         System.out.println("You got hit by the enemy. (-" + enemyAttackDamage + " health)");
                         timeout();
@@ -149,7 +148,7 @@ public class Game {
                     break;
                 case "flee":
                     System.out.println("You got away!");
-                    return false;
+                    return;
                 case "ownstats":
                     System.out.println("Stats: " + getHealth() + " health, " + getAttackDamage() + " attack damage");
                     break;
@@ -164,11 +163,10 @@ public class Game {
             System.out.print("You lost");
             loadingSystemWithOnlyPoints();
             System.exit(0);
-            return false;
+            return;
         }
 
         System.out.println("You won!!!");
-        return true;
     }
 
     // todo: add colors, more text...
