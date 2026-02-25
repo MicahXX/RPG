@@ -115,7 +115,7 @@ public class Game {
 
         separators();
         System.out.println(getName() + " encounters an " + enemyName + ".");
-        System.out.println("Stats: " + enemyHealth + " health, " + enemyAttackDamage + " attack damage");
+        System.out.println("Stats: " + enemyHealth + " HP, " + enemyAttackDamage + " AP");
 
         while (enemyHealth > 0 && getHealth() > 0) {
             separators();
@@ -129,7 +129,7 @@ public class Game {
                     separators();
                     System.out.println("You dealt " + getAttackDamage() + " damage.");
                     timeout();
-                    System.out.println("Remaining enemy health: " + enemyHealth);
+                    System.out.println("Remaining enemy HP: " + enemyHealth);
 
                     if (enemyHealth > 0) {
                         timeout();
@@ -138,10 +138,10 @@ public class Game {
                         timeout();
                         setHealth(Math.max(0, getHealth() - enemyAttackDamage));
                         timeout();
-                        System.out.println("You got hit by the enemy. (-" + enemyAttackDamage + " health)");
+                        System.out.println("You got hit by the enemy. (-" + enemyAttackDamage + " HP)");
                         timeout();
                         if (getHealth() > 0) {
-                            System.out.println("Own health left: " + getHealth());
+                            System.out.println("Own HP left: " + getHealth());
                         }
                     }
                     turns++;
@@ -150,10 +150,10 @@ public class Game {
                     System.out.println("You got away!");
                     return;
                 case "ownstats":
-                    System.out.println("Stats: " + getHealth() + " health, " + getAttackDamage() + " attack damage");
+                    System.out.println("Stats: " + getHealth() + " HP, " + getAttackDamage() + " AP");
                     break;
                 case "?":
-                    System.out.println("help smth");
+                    System.out.println("HP - Health Points, AP - Attack Points");
                     break;
                 default:
                     System.out.println("Invalid option.");
