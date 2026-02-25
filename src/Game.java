@@ -1,3 +1,5 @@
+import org.w3c.dom.ls.LSOutput;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -154,6 +156,8 @@ public class Game {
                     break;
                 case "?":
                     System.out.println("HP - Health Points, AP - Attack Points");
+                    System.out.println("attack - user attacks and gets attacked");
+                    System.out.println("flee - run from the fight away");
                     break;
                 default:
                     System.out.println("Invalid option.");
@@ -165,9 +169,12 @@ public class Game {
             System.exit(0);
             return;
         }
-
-        money += rewardedMoney;
         System.out.println("You won!!!");
+
+        System.out.println("Old money amount: " + getMoney() + " (+" + rewardedMoney + ")");
+        money += rewardedMoney;
+        System.out.println("New amount: " + getMoney());
+        separators();
     }
 
     // todo: add colors, more text...
