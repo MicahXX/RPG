@@ -127,7 +127,7 @@ public class Game {
                     enemyHealth = Math.max(0, enemyHealth - getAttackDamage());
                     timeout();
                     separators();
-                    System.out.println("You dealt " + getAttackDamage() + ".");
+                    System.out.println("You dealt " + getAttackDamage() + " damage.");
                     timeout();
                     System.out.println("Remaining enemy health: " + enemyHealth);
 
