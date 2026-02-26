@@ -1,5 +1,3 @@
-import org.w3c.dom.ls.LSOutput;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -104,6 +102,7 @@ public class Game {
         }
         timeout();
         System.out.println("You now have: " + getMoney() + " dollars.");
+        timeout();
     }
 
     // todo: implement a short minigame which an user can do do a reward
@@ -210,25 +209,83 @@ public class Game {
         System.out.println("Anyways you wake up in a small room and stand up to begin your day.");
         timeout();
         separators();
-        System.out.print("Where do you want to move to? w/a/s/d: ");
-        String moveOption = input.nextLine().toLowerCase();
 
-        switch (moveOption) {
-            case "w":
-                setAndGetNewBalance(5);
-                separators();
-                break;
-            case "a":
-                System.out.println("There was nothing");
-                loadingSystemWithOnlyPoints();
-                break;
-            // todo: both of these options of these systems
-            case "s":
-                roomOneMinigame();
-                break;
-            case "d":
-                enemyDuelSystem("Rat", 3, 0.5, 2);
-                break;
+        boolean passed = false;
+        boolean exitFight = false;
+        boolean moneyOption = true;
+
+        while (!passed) {
+            System.out.print("Where do you want to move to? w/a/s/d: ");
+            String moveOption = input.nextLine().toLowerCase();
+
+            switch (moveOption) {
+                case "w":
+                    if (moneyOption) {
+                        setAndGetNewBalance(5);
+                        moneyOption = false;
+                    } else {
+                        System.out.println("You already got everything here.");
+                    }
+                    separators();
+                    break;
+                case "a":
+                    System.out.print("There was nothing");
+                    loadingSystemWithOnlyPoints();
+                    separators();
+                    break;
+                // todo: both of these options of these systems
+                case "s":
+                    roomOneMinigame();
+                    break;
+                case "d":
+                    System.out.print("The exit is here, but an enemy is guarding it are you sure to continue? y/n: ");
+                    String answer = input.nextLine().toLowerCase();
+
+                    switch (answer) {
+                        case "n":
+                            exitFight = true;
+                            System.out.print("You got away");
+                            loadingSystemWithOnlyPoints();
+                            separators();
+                            break;
+                        case "y":
+                            break;
+                        default:
+                            exitFight = true;
+                            System.out.println("Invalid Input");
+                            System.out.println("Default to 'n'.");
+                            separators();
+                            break;
+                    }
+
+                    if (exitFight) {
+                        exitFight = false;
+                        break;
+                    }
+
+                    // put this in an if-statement ?
+                    enemyDuelSystem("Rat", 3, 0.5, 2);
+
+                    System.out.println("You are able to enter room 2!");
+                    System.out.println("Do you want to enter room 2? y/n: ");
+                    String advanceChoice = input.nextLine().toLowerCase();
+                    // todo: the system for this need another option for if so fight does not trigger again etc.
+                    switch (advanceChoice) {
+
+                    }
+
+                    break;
+            }
         }
+    }
+
+    public void secondRoom() throws InterruptedException {
+        separators();
+        System.out.println("You enter the living room.");
+        timeout();
+        System.out.println("My mother is here, " + getName() + " thinks.");
+        timeout();
+        // todo: yeah story telling aint my thing...
+        // todo: split rooms in diff .jar up etc and the systems, also improve code/make more functions.
     }
 }
