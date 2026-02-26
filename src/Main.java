@@ -14,8 +14,7 @@ public class Main {
 
         room.beginnerScene();
         room.beginnerDataInput();
-        room.beginnerRoom(); // todo: the enemysystem or in the room add the actual code that saves us having beaten enemy
-                            // todo: so when we say n and the come back enemy already dead...
+        room.beginnerRoom(); // todo: add the minigame
         room2.secondRoom();
     }
 }

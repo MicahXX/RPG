@@ -58,6 +58,7 @@ public class BeginnerRoom {
         boolean passed = false;
         boolean exitFight = false;
         boolean moneyOption = true;
+        boolean isEnemyDead = false;
 
         while (!passed) {
             System.out.print("Where do you want to move to? w/a/s/d: ");
@@ -85,44 +86,58 @@ public class BeginnerRoom {
                     break;
 
                 case "d":
-                    System.out.print("The exit is here, but an enemy is guarding it. Continue? y/n: ");
-                    String answer = input.nextLine().toLowerCase();
+                    if (!isEnemyDead) {
+                        System.out.print("The exit is here, but an enemy is guarding it. Continue? y/n: ");
+                        String answer = input.nextLine().toLowerCase();
 
-                    switch (answer) {
-                        case "n":
-                            exitFight = true;
-                            System.out.print("You got away");
-                            helper.loadingSystemWithOnlyPoints();
-                            helper.separators();
-                            break;
-                        case "y":
-                            break;
-                        default:
-                            exitFight = true;
-                            System.out.println("Invalid Input");
-                            System.out.println("Default to 'n'.");
-                            helper.separators();
-                            break;
-                    }
+                        switch (answer) {
+                            case "n":
+                                exitFight = true;
+                                System.out.print("You got away");
+                                helper.loadingSystemWithOnlyPoints();
+                                helper.separators();
+                                break;
+                            case "y":
+                                break;
+                            default:
+                                exitFight = true;
+                                System.out.println("Invalid Input");
+                                System.out.println("Default to 'n'.");
+                                helper.separators();
+                                break;
+                        }
 
-                    if (exitFight) {
-                        exitFight = false;
+                        if (exitFight) {
+                            exitFight = false;
+                            break;
+                        }
+
+                        enemy.enemyDuelSystem("Rat", 3, 0.5, 2);
+                        isEnemyDead = true;
+                        System.out.println("You are able to enter room 2!");
+
+                        System.out.print("Do you want to enter room 2? y/n: ");
+                        String advanceChoice = input.nextLine().toLowerCase();
+
+                        if (advanceChoice.equals("y")) {
+                            passed = true;
+                        } else {
+                            System.out.println("You decide to stay a while longer.");
+                        }
                         break;
                     }
-
-                    enemy.enemyDuelSystem("Rat", 3, 0.5, 2);   // enemy.enemyDuelSystem()
-
-                    System.out.println("You are able to enter room 2!");
-                    System.out.print("Do you want to enter room 2? y/n: ");
+                    System.out.print("Do you want to enter room 2? y/n/?: ");
                     String advanceChoice = input.nextLine().toLowerCase();
 
                     if (advanceChoice.equals("y")) {
                         passed = true;
+                    } else if (advanceChoice.equals("?")) {
+                        System.out.println("If you enter 'n', you can explore the other directions," +
+                                " otherwise if you enter 'y' you can not go back.");
                     } else {
                         System.out.println("You decide to stay a while longer.");
                     }
                     break;
-
                 default:
                     System.out.println("Invalid direction.");
                     break;
