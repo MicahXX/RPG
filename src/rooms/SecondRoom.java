@@ -21,9 +21,8 @@ public class SecondRoom {
         helper.separators();
         System.out.println("You enter the living room.");
         helper.timeout();
-        System.out.println("My mother is here, " + player.getName() + " thinks.");
+        System.out.println("My mother is here, " + player.getName() + " is thinking.");
         helper.timeout();
         // todo: yeah story telling aint my thing...
-        // todo: split rooms in diff .jar up etc and the systems, also improve code/make more functions.
     }
 }
