@@ -14,7 +14,7 @@ public class Main {
 
         room.beginnerScene();
         room.beginnerDataInput();
-        room.beginnerRoom(); // todo: add the minigame
+        room.beginnerRoom(); // todo: add the minigame, flee allows you to bypass killing the enemy!
         room2.secondRoom();
     }
 }
