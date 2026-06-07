@@ -1,0 +1,1 @@
+Note: This was made with no usage of AI and all of this is my own knowledge, as I just wanted to do a project without an usage of AI, as many people become depended on it and I dont want to end up like that.
