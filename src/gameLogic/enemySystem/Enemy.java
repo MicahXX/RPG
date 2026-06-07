@@ -24,11 +24,13 @@ public class Enemy {
         while (enemyHealth > 0 && player.getHealth() > 0) {
             helper.separators();
             System.out.println("Turn: " + turns);
-            System.out.print("What do you want to do? (attack / flee / ownstats / ?): ");
+            System.out.print("What do you want to do? attack(a or 1) / flee(f or 2) / ownstats(o or 3) / ? or 0: ");
             String option = input.nextLine().toLowerCase();
 
             switch (option) {
                 case "attack":
+                case "a":
+                case "1":
                     enemyHealth = Math.max(0, enemyHealth - player.getAttackDamage());
                     helper.timeout();
                     helper.separators();
@@ -53,14 +55,19 @@ public class Enemy {
                     break;
 
                 case "flee":
+                case "f":
+                case "2":
                     System.out.println("You got away!");
                     return;
 
                 case "ownstats":
+                case "o":
+                case "3":
                     System.out.println("Stats: " + player.getHealth() + " HP, " + player.getAttackDamage() + " AP");
                     break;
 
                 case "?":
+                case "0":
                     System.out.println("HP - Health Points, AP - Attack Points");
                     System.out.println("attack - attack the enemy");
                     System.out.println("flee - run from the fight");

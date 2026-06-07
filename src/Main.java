@@ -12,9 +12,14 @@ public class Main {
         BeginnerRoom room = new BeginnerRoom(player, helper, enemy);
         SecondRoom room2 = new SecondRoom(player, helper, enemy);
 
+        // bedroom, rat encounter/fight
         room.beginnerScene();
         room.beginnerDataInput();
         room.beginnerRoom(); // todo: add the minigame, flee allows you to bypass killing the enemy!
-        room2.secondRoom();
+
+        // living room, encounter with mom
+        room2.secondRoom(); // todo: do this!
+
+        // todo: make more rooms
     }
 }
