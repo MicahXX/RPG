@@ -41,8 +41,43 @@ public class BeginnerRoom {
         helper.timeout();
     }
 
-    public void roomOneMinigame() {
-        // TODO: not sure how and what, but we will see
+    // todo: improve this
+    public void roomOneMinigame() throws InterruptedException {
+        System.out.println("You find a mouse that asks you to choose between the number 1 or 2.");
+        helper.separators();
+        System.out.println("The little mouse explains that if you guess right he would reward you.");
+        helper.separators();
+        System.out.println("What do you choose? 1 or 2");
+        int choice = input.nextInt();
+
+        double correctNumber = Math.random();
+
+        // my ahh logic to choose 0 or 1
+        if (correctNumber > 0.5) {
+            correctNumber = 2;
+        } else if (correctNumber < 0.5)  {
+            correctNumber = 1;
+        } else  {
+            System.out.println("you are unlucky ig.");
+            correctNumber = -1;
+        }
+
+        switch ((int) correctNumber) {
+            case 1:
+                if (correctNumber == choice) {
+                    System.out.println("You guessed right he rewards you.");
+                    helper.setAndGetNewBalance(5);
+                }
+                break;
+            case 2:
+                if (correctNumber != choice) {
+                    System.out.println("You guessed wrong he runs away.");
+                    helper.loadingSystem();
+                }
+                break;
+            default:
+                System.out.println("How?");
+        }
     }
 
     public void beginnerRoom() throws InterruptedException {
@@ -55,10 +90,17 @@ public class BeginnerRoom {
         helper.timeout();
         helper.separators();
 
-        boolean passed = false;
-        boolean exitFight = false;
+        // w (free money)
         boolean moneyOption = true;
+
+        // duel (d)
         boolean isEnemyDead = false;
+        boolean exitFight = false;
+        boolean passed = false;
+
+        // minigame (s)
+        boolean firstEncounter = true;
+        boolean moneyOptionMinigame = true;
 
         while (!passed) {
             System.out.print("Where do you want to move to? w/a/s/d: ");
@@ -81,8 +123,14 @@ public class BeginnerRoom {
                     helper.separators();
                     break;
 
+                // todo: improve this here
                 case "s":
-                    roomOneMinigame();
+                    if (firstEncounter && moneyOptionMinigame) {
+                        roomOneMinigame();
+                        firstEncounter = false;
+                    } else {
+                        System.out.println("You already got everything here.");
+                    }
                     break;
 
                 case "d":
