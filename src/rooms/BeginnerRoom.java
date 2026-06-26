@@ -3,6 +3,7 @@ package rooms;
 import gameLogic.playerSystem.Player;
 import gameLogic.helperFunctions.Helper;
 import gameLogic.enemySystem.Enemy;
+import gameLogic.roomLogic.Rooms;
 import java.util.Scanner;
 
 public class BeginnerRoom {
@@ -10,12 +11,14 @@ public class BeginnerRoom {
     private final Player player;
     private final Helper helper;
     private final Enemy enemy;
+    private final Rooms rooms;
     private final Scanner input = new Scanner(System.in);
 
-    public BeginnerRoom(Player player, Helper helper, Enemy enemy) {
+    public BeginnerRoom(Player player, Helper helper, Enemy enemy, Rooms rooms) {
         this.player = player;
         this.helper = helper;
         this.enemy = enemy;
+        this.rooms = rooms;
     }
 
     public void beginnerScene() throws InterruptedException {
@@ -41,45 +44,6 @@ public class BeginnerRoom {
         helper.timeout();
     }
 
-    // todo: improve this
-    public void roomOneMinigame() throws InterruptedException {
-        System.out.println("You find a mouse that asks you to choose between the number 1 or 2.");
-        helper.separators();
-        System.out.println("The little mouse explains that if you guess right he would reward you.");
-        helper.separators();
-        System.out.println("What do you choose? 1 or 2");
-        int choice = input.nextInt();
-
-        double correctNumber = Math.random();
-
-        // my ahh logic to choose 0 or 1
-        if (correctNumber > 0.5) {
-            correctNumber = 2;
-        } else if (correctNumber < 0.5)  {
-            correctNumber = 1;
-        } else  {
-            System.out.println("you are unlucky ig.");
-            correctNumber = -1;
-        }
-
-        switch ((int) correctNumber) {
-            case 1:
-                if (correctNumber == choice) {
-                    System.out.println("You guessed right he rewards you.");
-                    helper.setAndGetNewBalance(5);
-                }
-                break;
-            case 2:
-                if (correctNumber != choice) {
-                    System.out.println("You guessed wrong he runs away.");
-                    helper.loadingSystem();
-                }
-                break;
-            default:
-                System.out.println("How?");
-        }
-    }
-
     public void beginnerRoom() throws InterruptedException {
         System.out.println("Its a beautiful day today you think to yourself.");
         helper.timeout();
@@ -97,10 +61,6 @@ public class BeginnerRoom {
         boolean isEnemyDead = false;
         boolean exitFight = false;
         boolean passed = false;
-
-        // minigame (s)
-        boolean firstEncounter = true;
-        boolean moneyOptionMinigame = true;
 
         while (!passed) {
             System.out.print("Where do you want to move to? w/a/s/d: ");
@@ -125,12 +85,7 @@ public class BeginnerRoom {
 
                 // todo: improve this here
                 case "s":
-                    if (firstEncounter && moneyOptionMinigame) {
-                        roomOneMinigame();
-                        firstEncounter = false;
-                    } else {
-                        System.out.println("You already got everything here.");
-                    }
+                    rooms.roomDefaultMinigame(1); // todo: make this work
                     break;
 
                 case "d":
