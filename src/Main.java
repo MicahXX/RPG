@@ -1,6 +1,7 @@
 import gameLogic.playerSystem.Player;
 import gameLogic.helperFunctions.Helper;
 import gameLogic.enemySystem.Enemy;
+import gameLogic.roomLogic.Rooms;
 import rooms.BeginnerRoom;
 import rooms.SecondRoom;
 
@@ -9,7 +10,8 @@ public class Main {
         Player player = new Player("", 10, 1, 10, null);
         Helper helper = new Helper(player);
         Enemy enemy = new Enemy(player, helper);
-        BeginnerRoom room = new BeginnerRoom(player, helper, enemy);
+        Rooms rooms = new Rooms(helper);
+        BeginnerRoom room = new BeginnerRoom(player, helper, enemy, rooms);
         SecondRoom room2 = new SecondRoom(player, helper, enemy);
 
         // bedroom, rat encounter/fight
