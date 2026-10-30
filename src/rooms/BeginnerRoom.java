@@ -48,7 +48,7 @@ public class BeginnerRoom {
         System.out.println("Its a beautiful day today you think to yourself.");
         helper.timeout();
         System.out.print("Or is it?");
-        helper.loadingSystemWithOnlyPoints();
+        // helper.loadingSystemWithOnlyPoints(); // this is really annoying
         helper.timeout();
         System.out.println("Anyways you wake up in a small room and stand up to begin your day.");
         helper.timeout();
@@ -83,9 +83,8 @@ public class BeginnerRoom {
                     helper.separators();
                     break;
 
-                // todo: improve this here
                 case "s":
-                    rooms.roomDefaultMinigame(1); // todo: make this work
+                    rooms.roomDefaultMinigame(1);
                     break;
 
                 case "d":

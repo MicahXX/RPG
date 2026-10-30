@@ -23,6 +23,6 @@ public class SecondRoom {
         helper.timeout();
         System.out.println("My mother is here, " + player.getName() + " is thinking.");
         helper.timeout();
-        // todo: yeah story telling aint my thing...
+
     }
 }

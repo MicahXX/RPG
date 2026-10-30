@@ -7,22 +7,20 @@ import java.util.Scanner;
 public class Rooms {
     private final Helper helper;
     private final Scanner input = new Scanner(System.in);
-
+    private boolean isCompleted = false;
 
     public Rooms(Helper helper) {
         this.helper = helper;
     }
 
-    // I think this doesn't work, because when you call this after its done the things won't save, so we need to somehow save this
     public void roomDefaultMinigame(int moneyEarned) throws InterruptedException {
-        boolean isCompleted = false;
 
         if (!isCompleted) {
-            System.out.println("You find a mouse that asks you to choose between the number 1 or 2.");
             helper.separators();
+            System.out.println("You find a mouse that asks you to choose between the number 1 or 2.");
             System.out.println("The little mouse explains that if you guess right he would reward you.");
             helper.separators();
-            System.out.println("What do you choose? 1 or 2");
+            System.out.print("What do you choose? (1 or 2): ");
             int choice = input.nextInt();
 
             double correctNumber = Math.random();
@@ -37,6 +35,7 @@ public class Rooms {
                 correctNumber = -1;
             }
 
+            // there stil seems to be some kind of bug here
             switch ((int) correctNumber) {
                 case 1:
                     if (correctNumber == choice) {
@@ -53,6 +52,7 @@ public class Rooms {
                 default:
                     System.out.println("How?");
             }
+            isCompleted = true;
         } else {
             System.out.println("You have finished the minigame there is nothing left.");
             helper.loadingSystem();

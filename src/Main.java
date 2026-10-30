@@ -14,13 +14,13 @@ public class Main {
         BeginnerRoom room = new BeginnerRoom(player, helper, enemy, rooms);
         SecondRoom room2 = new SecondRoom(player, helper, enemy);
 
-        // bedroom, rat encounter/fight
+        // Intro, bedroom, 4 choices (w,a,s,d), rat encounter/fight (bossfight kinda)
         room.beginnerScene();
         room.beginnerDataInput();
-        room.beginnerRoom(); // todo: add the minigame, flee allows you to bypass killing the enemy!
+        room.beginnerRoom(); // todo: fix minigame bugs and other minor issues
 
         // living room, encounter with mom
-        room2.secondRoom(); // todo: do this!
+        room2.secondRoom(); // I need to think of a better story man
 
         // todo: make more rooms
     }
